@@ -2,97 +2,126 @@ public class RationalNumber extends RealNumber
 {
   private int numerator, denominator;
 
-  /**Initialize the RationalNumber with the provided values
-  *  if the denominator is 0, make the fraction 0/1 instead
-  *@param nume the numerator
-  *@param deno the denominator
-  */
   public RationalNumber(int nume, int deno){
     super(0.0);//this value is ignored!
+    numerator = nume;
+    denominator = deno;
+    if (deno == 0) {
+      numerator = 0;
+      denominator = 1;
+    }
+    if (deno < 0) {
+      numerator = -1*numerator;
+      denominator = -1*denominator;
+    }
+    reduce();
   }
 
   public double getValue(){
-    return 0.0;
+    return (double) numerator / (double) denominator;
   }
 
-  /**
-  *@return the numerator
-  */
   public int getNumerator(){
-    return 0;
+    return numerator;
   }
-  /**
-  *@return the denominator
-  */
+
   public int getDenominator(){
-    return 0;
+    return denominator;
   }
-  /**
-  *@return a new RationalNumber that has the same numerator
-  *and denominator as this RationalNumber but reversed.
-  */
+
   public RationalNumber reciprocal(){
-    return null;
+    return new RationalNumber(denominator,numerator);
   }
-  /**
-  *@return true when the RationalNumbers have the same numerators and denominators, false otherwise.
-  */
+
   public boolean equals(RationalNumber other){
-    return false;
+    if (this.getNumerator() == other.getNumerator() && this.getDenominator() == other.getDenominator()){
+      return true;
+    }
+    else return false;
   }
 
-
-  /**
-  *@return the value expressed as "3/4" or "8/3"
-  */
   public String toString(){
-    return "0";
+    return numerator + "/" + denominator;
   }
 
-  /**Calculate the GCD of two integers.
-  *@param a the first integers
-  *@param b the second integer
-  *@return the value of the GCD
-  */
   private static int gcd(int a, int b){
-    /*use euclids method or a better one*/
-    http://sites.math.rutgers.edu/~greenfie/gs2004/euclid.html
-    return 0;
+    while (a != b){
+      if (a > b)
+        a -= b;
+      else
+        b -= a;
+    }
+    return a;
   }
 
-  /**
-  *Divide the numerator and denominator by the GCD
-  *This must be used to maintain that all RationalNumbers are
-  *reduced after construction.
-  */
   private void reduce(){
-
+    if (numerator != 0){
+      int common = gcd(Math.abs(numerator), denominator);
+      numerator = numerator / common;
+      denominator = denominator / common;
+    }
   }
-  /******************Operations Return a new RationalNumber!!!!****************/
-  /**
-  *Return a new RationalNumber that is the product of this and the other
-  */
+
+//-------------------------Operations---------------------------//
+
   public RationalNumber multiply(RationalNumber other){
-    return null;
+    int numer = this.getNumerator() * other.getNumerator();
+    int denom = this.getDenominator() * other.getDenominator();
+    return new RationalNumber(numer, denom);
   }
 
-  /**
-  *Return a new RationalNumber that is the this divided by the other
-  */
   public RationalNumber divide(RationalNumber other){
-    return null;
+    return multiply(other.reciprocal());
   }
 
-  /**
-  *Return a new RationalNumber that is the sum of this and the other
-  */
   public RationalNumber add(RationalNumber other){
-    return null;
+    int commonDenominator = this.getDenominator() * other.getDenominator();
+    int numer1 = this.getNumerator() * other.getDenominator();
+    int numer2 = other.getNumerator() * this.getDenominator();
+    int NumerSum = numer1 + numer2;
+    return new RationalNumber(NumerSum, commonDenominator);
   }
-  /**
-  *Return a new RationalNumber that this minus the other
-  */
+
   public RationalNumber subtract(RationalNumber other){
-    return null;
+    int commonDenominator = this.getDenominator() * other.getDenominator();
+    int numer1 = this.getNumerator() * other.getDenominator();
+    int numer2 = other.getNumerator() * this.getDenominator();
+    int NumerDiff = numer1 - numer2;
+    return new RationalNumber(NumerDiff, commonDenominator);
   }
-} 
+
+  /*
+
+  //Small Tester
+  public static void main(String[] args){
+
+    //Checks reduce
+    RationalNumber t1 = new RationalNumber(25,5);
+    System.out.println(t1.toString());
+
+    //Checks equals
+    RationalNumber t2 = new RationalNumber(5,1);
+    System.out.println(t1.equals(t2));
+
+    //Checks reciprocal
+    System.out.println(t1.reciprocal());
+
+    //Checks GCD
+    System.out.println(gcd(25,5));
+
+    //getValue
+    System.out.println(t1.getValue());
+
+    //Operators
+    RationalNumber t3 = new RationalNumber(12,3);
+    System.out.println(t3.toString());
+    System.out.println("Operations");
+    System.out.println(t1.multiply(t3).toString());
+    System.out.println(t1.add(t3).toString());
+    System.out.println(t1.subtract(t3).toString());
+    System.out.println(t1.divide(t3).toString());
+  }
+
+  */
+
+}
