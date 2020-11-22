@@ -64,5 +64,28 @@ public class RealNumber{
     RealNumber NewNum = new RealNumber(sum);
     return NewNum;
   }
-  
+
+  /*
+
+  //Small Tester
+
+  public static void main(String[] args){
+
+    //Checks getValue and toString
+    RealNumber t1 = new RealNumber(0.25);
+    System.out.println(t1.getValue());
+
+    RealNumber t2 = new RealNumber(0.25000000000001);
+    System.out.println(t1.equals(t2));
+
+    //Operations
+    RealNumber t3 = new RealNumber(0.05);
+    System.out.println(t1.multiply(t3));
+    System.out.println(t1.divide(t3));
+    System.out.println(t1.add(t3));
+    System.out.println(t1.subtract(t3));
+  }
+
+  */
+
 }
