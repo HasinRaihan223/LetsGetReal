@@ -10,6 +10,10 @@ public class RationalNumber extends RealNumber
       numerator = 0;
       denominator = 1;
     }
+    if (numerator == 0) {
+      numerator = 0;
+      denominator = 1;
+    }
     if (deno < 0) {
       numerator = -1*numerator;
       denominator = -1*denominator;
@@ -116,10 +120,14 @@ public class RationalNumber extends RealNumber
     RationalNumber t3 = new RationalNumber(12,3);
     System.out.println(t3.toString());
     System.out.println("Operations");
-    System.out.println(t1.multiply(t3).toString());
-    System.out.println(t1.add(t3).toString());
-    System.out.println(t1.subtract(t3).toString());
-    System.out.println(t1.divide(t3).toString());
+    System.out.println(t1.multiply(t3));
+    System.out.println(t1.add(t3));
+    System.out.println(t1.subtract(t3));
+    System.out.println(t1.divide(t3));
+
+    RationalNumber t4 = new RationalNumber(40,240);
+    RationalNumber t5 = new RationalNumber(1,0);
+    System.out.println(t1.divide(t2));
   }
 
   */
