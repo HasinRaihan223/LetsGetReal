@@ -15,5 +15,13 @@ public abstract class Number{
   *Special case: if one is exactly zero, the other must be exactly zero.
   */
   public boolean equals(Number other){
-    //TO BE IMPLEMENTED  }
+    if (this.getValue() == 0 || other.getValue() == 0){
+      return his.getValue() == 0 && other.getValue() == 0;
+    }
+    double decimalPercent = 0.001 / 200.0;
+    double high = other.getValue() * (1.0 + decimalPercent);
+    double low = other.getValue() * (1.0 - decimalPercent);
+    return low <= this.getValue() && this.getValue() <= high;
+  }
+
 }
