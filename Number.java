@@ -6,7 +6,7 @@ public abstract class Number{
   return a positive value when this Number is larger than the other Number
   */
   public int compareTo(Number other){
-    if (this.getValue().equals(other.getValue())) {
+    if (this.getValue() == other.getValue()) {
       return 0;
     }
     else if (this.getValue() < other.getValue()){
@@ -24,7 +24,7 @@ public abstract class Number{
   */
   public boolean equals(Number other){
     if (this.getValue() == 0 || other.getValue() == 0){
-      return his.getValue() == 0 && other.getValue() == 0;
+      return this.getValue() == 0 && other.getValue() == 0;
     }
     double decimalPercent = 0.001 / 200.0;
     double high = other.getValue() * (1.0 + decimalPercent);
