@@ -14,12 +14,12 @@ public class RealNumber extends Number
     return ""+getValue();
   }
 
-  // public boolean equals(RealNumber other){
-  //   double decimalPercent = 0.001 / 200.0;
-  //   double high = other.getValue() * (1.0 + decimalPercent);
-  //   double low = other.getValue() * (1.0 - decimalPercent);
-  //   return low <= this.getValue() && this.getValue() <= high;
-  // }
+  public boolean equals(RealNumber other){
+    double sdecimalPercent = 0.001 / 200.0;
+    double high = other.getValue() * (1.0 + decimalPercent);
+    double low = other.getValue() * (1.0 - decimalPercent);
+    return low <= this.getValue() && this.getValue() <= high;
+  }
 
   public RealNumber add(RealNumber other){
     double sum = this.getValue() + other.getValue();
